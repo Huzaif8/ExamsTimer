@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exams Countdown Timers</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: 2.5rem;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .timer-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+
+    .timer {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .timer:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .timer h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .time {
+      font-size: 1.8rem;
+      font-weight: bold;
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff9a9e; }
+      to { text-shadow: 0 0 20px #fff, 0 0 30px #fad0c4; }
+    }
+
+    .meme-container {
+      margin: 30px auto;
+      width: 80%;
+    }
+
+    .meme-container img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Exams Countdown Timers</h1>
+
+  <div class="timer-container">
+    <div class="timer">
+      <h2>Object Oriented Programming (C++)</h2>
+      <h4>26th November</h4>
+      <div class="time" id="timer-26">Loading...</div>
+    </div>
+    <div class="timer">
+      <h2>Mathematical Techniques in Computer Science (MTCS)</h2>
+      <h4>28th November</h4>
+      <div class="time" id="timer-28">Loading...</div>
+    </div>
+    <div class="timer">
+      <h2>Computer Network (CN)</h2>
+      <h4>30th November</h4>
+      <div class="time" id="timer-30">Loading...</div>
+    </div>
+    <div class="timer">
+      <h2>Data Structure And Algorithm (DSA)</h2>
+        <h4>3rd December</h4>
+      <div class="time" id="timer-3">Loading...</div>
+    </div>
+  </div>
+
+  <div class="meme-container">
+    <h2>Random Meme for Fun</h2>
+    <img id="meme" src="" alt="Loading meme...">
+  </div>
+
+  <footer>
+    Made with ❤️ and some memes.
+  </footer>
+
+  <script>
+    // Function to initialize countdown timers
+    function initializeTimer(id, targetDate) {
+      const timerElement = document.getElementById(id);
+
+      function updateTimer() {
+        const now = new Date();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+          timerElement.textContent = "Time's up!";
+          return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      // Update timer every second
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    // Target dates for each timer (2:00 PM)
+    const year = new Date().getFullYear();
+    const timers = [
+      { id: "timer-26", date: new Date(year, 10, 26, 14, 0, 0) }, // 26th Nov
+      { id: "timer-28", date: new Date(year, 10, 28, 14, 0, 0) }, // 28th Nov
+      { id: "timer-30", date: new Date(year, 10, 30, 14, 0, 0) }, // 30th Nov
+      { id: "timer-3", date: new Date(year, 11, 3, 14, 0, 0) }    // 3rd Dec
+    ];
+
+    // Initialize all timers
+    timers.forEach(timer => initializeTimer(timer.id, timer.date));
+
+    // Fetch and display a random meme
+    async function fetchMeme() {
+      const memeContainer = document.getElementById('meme');
+      try {
+        const response = await fetch('https://api.imgflip.com/get_memes');
+        const data = await response.json();
+        const memes = data.data.memes;
+        const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+        memeContainer.src = randomMeme.url;
+      } catch (error) {
+        console.error('Error fetching meme:', error);
+        memeContainer.alt = 'Failed to load meme.';
+      }
+    }
+
+    fetchMeme();
+  </script>
+  <script>
+  // Timer initialization code here...
+  timers.forEach(timer => initializeTimer(timer.id, timer.date));
+
+  // Paste the random color change function here
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function changeColors() {
+    const timerBoxes = document.querySelectorAll('.timer');
+    const timerTexts = document.querySelectorAll('.time');
+
+    timerBoxes.forEach((box) => {
+      box.style.backgroundColor = getRandomColor();
+    });
+
+    timerTexts.forEach((text) => {
+      text.style.color = getRandomColor();
+    });
+  }
+
+  setInterval(changeColors, 32000);
+  changeColors();
+</script>
+
+</body>
+</html>
