@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exams Countdown Timers</title>
   <style>
+    /* Body Styling */
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background: linear-gradient(120deg, #6a11cb, #2575fc);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: #fff;
@@ -17,6 +18,7 @@
       overflow-x: hidden;
     }
 
+    /* Gradient Animation */
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -25,10 +27,11 @@
 
     h1 {
       margin: 20px 0;
-      font-size: 2.5rem;
-      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+      font-size: 2.8rem;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
     }
 
+    /* Timer Container Styling */
     .timer-container {
       display: flex;
       justify-content: center;
@@ -38,90 +41,85 @@
       max-width: 1200px;
     }
 
+    /* Timer Card Styling */
     .timer {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 15px;
       padding: 20px;
-      width: 250px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s, box-shadow 0.3s;
+      width: 280px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform: perspective(500px) rotateY(0deg);
     }
 
+    /* Hover Effect */
     .timer:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-10px) rotateY(5deg) scale(1.05);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
     .timer h2 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       margin-bottom: 10px;
+      color: #ffe600;
     }
 
+    /* Countdown Timer Numbers */
     .time {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      animation: glow 1.5s ease-in-out infinite alternate;
+      color: #ff4e50;
+      animation: pulse 1.5s ease-in-out infinite alternate;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff9a9e; }
-      to { text-shadow: 0 0 20px #fff, 0 0 30px #fad0c4; }
+    /* Countdown Pulse Animation */
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); color: #ffd700; }
     }
 
-    .meme-container {
-      margin: 30px auto;
-      width: 80%;
-    }
-
-    .meme-container img {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
+    /* Footer Styling */
     footer {
       margin-top: 40px;
       font-size: 1rem;
+      opacity: 0.8;
     }
   </style>
 </head>
-<body>
-  <h1>Exams Countdown Timers</h1>
 
+<body>
+  <h1>📚 Exams Countdown Timers 🚀</h1>
+
+  <!-- Timers for Each Subject -->
   <div class="timer-container">
     <div class="timer">
-      <h2>Object Oriented Programming (C++)</h2>
-      <h4>26th November</h4>
-      <div class="time" id="timer-26">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>Mathematical Techniques in Computer Science (MTCS)</h2>
-      <h4>28th November</h4>
-      <div class="time" id="timer-28">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>Computer Network (CN)</h2>
-      <h4>30th November</h4>
-      <div class="time" id="timer-30">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>Data Structure And Algorithm (DSA)</h2>
-        <h4>3rd December</h4>
+      <h2>🛡️ Essential of Computer Security</h2>
+      <h4>3rd April 2025, 2 to 5 PM</h4>
       <div class="time" id="timer-3">Loading...</div>
     </div>
-  </div>
-
-  <div class="meme-container">
-    <h2>Random Meme for Fun</h2>
-    <img id="meme" src="" alt="Loading meme...">
+    <div class="timer">
+      <h2>☕ Programming in Java</h2>
+      <h4>5th April 2025, 2 to 5 PM</h4>
+      <div class="time" id="timer-5">Loading...</div>
+    </div>
+    <div class="timer">
+      <h2>🔧 Software Engineering</h2>
+      <h4>8th April 2025, 2 to 5 PM</h4>
+      <div class="time" id="timer-8">Loading...</div>
+    </div>
+    <div class="timer">
+      <h2>🗄️ RDBMS</h2>
+      <h4>11th April 2025, 2 to 5 PM</h4>
+      <div class="time" id="timer-11">Loading...</div>
+    </div>
   </div>
 
   <footer>
-    Made with ❤️ and some memes.
+   Stay Strong Bhailog 💪. Top Karenge Kya Bolte 😅 
   </footer>
 
+  <!-- Countdown Timer Script -->
   <script>
     // Function to initialize countdown timers
     function initializeTimer(id, targetDate) {
@@ -133,6 +131,7 @@
 
         if (difference <= 0) {
           timerElement.textContent = "Time's up!";
+          timerElement.style.color = "#f00";
           return;
         }
 
@@ -149,65 +148,16 @@
       setInterval(updateTimer, 1000);
     }
 
-    // Target dates for each timer (2:00 PM)
-    const year = new Date().getFullYear();
+    // Target dates for each timer (2:00 PM - 5:00 PM)
     const timers = [
-      { id: "timer-26", date: new Date(year, 10, 26, 14, 0, 0) }, // 26th Nov
-      { id: "timer-28", date: new Date(year, 10, 28, 14, 0, 0) }, // 28th Nov
-      { id: "timer-30", date: new Date(year, 10, 30, 14, 0, 0) }, // 30th Nov
-      { id: "timer-3", date: new Date(year, 11, 3, 14, 0, 0) }    // 3rd Dec
+      { id: "timer-3", date: new Date(2025, 3, 3, 14, 0, 0) },  
+      { id: "timer-5", date: new Date(2025, 3, 5, 14, 0, 0) },  
+      { id: "timer-8", date: new Date(2025, 3, 8, 14, 0, 0) },  
+      { id: "timer-11", date: new Date(2025, 3, 11, 14, 0, 0) }  
     ];
 
     // Initialize all timers
     timers.forEach(timer => initializeTimer(timer.id, timer.date));
-
-    // Fetch and display a random meme
-    async function fetchMeme() {
-      const memeContainer = document.getElementById('meme');
-      try {
-        const response = await fetch('https://api.imgflip.com/get_memes');
-        const data = await response.json();
-        const memes = data.data.memes;
-        const randomMeme = memes[Math.floor(Math.random() * memes.length)];
-        memeContainer.src = randomMeme.url;
-      } catch (error) {
-        console.error('Error fetching meme:', error);
-        memeContainer.alt = 'Failed to load meme.';
-      }
-    }
-
-    fetchMeme();
   </script>
-  <script>
-  // Timer initialization code here...
-  timers.forEach(timer => initializeTimer(timer.id, timer.date));
-
-  // Paste the random color change function here
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-  function changeColors() {
-    const timerBoxes = document.querySelectorAll('.timer');
-    const timerTexts = document.querySelectorAll('.time');
-
-    timerBoxes.forEach((box) => {
-      box.style.backgroundColor = getRandomColor();
-    });
-
-    timerTexts.forEach((text) => {
-      text.style.color = getRandomColor();
-    });
-  }
-
-  setInterval(changeColors, 32000);
-  changeColors();
-</script>
-
 </body>
 </html>
