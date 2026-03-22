@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exams Countdown Timers</title>
+
   <style>
-    /* Body Styling */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: linear-gradient(120deg, #6a11cb, #2575fc);
@@ -15,10 +15,8 @@
       animation: gradientBG 15s ease infinite;
       color: #fff;
       text-align: center;
-      overflow-x: hidden;
     }
 
-    /* Gradient Animation */
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -27,137 +25,118 @@
 
     h1 {
       margin: 20px 0;
-      font-size: 2.8rem;
-      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+      font-size: 2.5rem;
     }
 
-    /* Timer Container Styling */
     .timer-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      margin: 20px auto;
-      max-width: 1200px;
+      margin: 20px;
     }
 
-    /* Timer Card Styling */
     .timer {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
+      background: rgba(255,255,255,0.15);
       padding: 20px;
+      border-radius: 15px;
       width: 280px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(15px);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      transform: perspective(500px) rotateY(0deg);
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
     }
 
-    /* Hover Effect */
     .timer:hover {
-      transform: translateY(-10px) rotateY(5deg) scale(1.05);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transform: scale(1.05);
     }
 
     .timer h2 {
-      font-size: 1.7rem;
-      margin-bottom: 10px;
       color: #ffe600;
+      font-size: 1.4rem;
     }
 
-    /* Countdown Timer Numbers */
     .time {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       color: #ff4e50;
-      animation: pulse 1.5s ease-in-out infinite alternate;
     }
 
-    /* Countdown Pulse Animation */
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); color: #ffd700; }
-    }
-
-    /* Footer Styling */
     footer {
-      margin-top: 40px;
-      font-size: 1rem;
-      opacity: 0.8;
+      margin-top: 30px;
     }
   </style>
 </head>
 
 <body>
-  <h1>📚 Exams Countdown Timers 🚀</h1>
 
-  <!-- Timers for Each Subject -->
-  <div class="timer-container">
-    <div class="timer">
-      <h2>🛡️ Essential of Computer Security</h2>
-      <h4>3rd April 2025, 2 to 5 PM</h4>
-      <div class="time" id="timer-3">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>☕ Programming in Java</h2>
-      <h4>5th April 2025, 2 to 5 PM</h4>
-      <div class="time" id="timer-5">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>🔧 Software Engineering</h2>
-      <h4>8th April 2025, 2 to 5 PM</h4>
-      <div class="time" id="timer-8">Loading...</div>
-    </div>
-    <div class="timer">
-      <h2>🗄️ RDBMS</h2>
-      <h4>11th April 2025, 2 to 5 PM</h4>
-      <div class="time" id="timer-11">Loading...</div>
-    </div>
+<h1>📚 Exams Countdown Timers 🚀</h1>
+
+<div class="timer-container">
+
+  <div class="timer">
+    <h2>🎯 MCA CET 2026</h2>
+    <h4>30 March 2026, 10 AM to 1 PM</h4>
+    <div class="time" id="timer-cet">Loading...</div>
   </div>
 
-  <footer>
-   Stay Strong Bhailog 💪. Top Karenge Kya Bolte 😅 
-  </footer>
+  <div class="timer">
+    <h2>🖼️ Fundamental of Image Processing</h2>
+    <h4>4 April 2026, 10 AM to 1 PM</h4>
+    <div class="time" id="timer-ip">Loading...</div>
+  </div>
 
-  <!-- Countdown Timer Script -->
-  <script>
-    // Function to initialize countdown timers
-    function initializeTimer(id, targetDate) {
-      const timerElement = document.getElementById(id);
+  <div class="timer">
+    <h2>⚙️ Software Process Management</h2>
+    <h4>7 April 2026, 10 AM to 1 PM</h4>
+    <div class="time" id="timer-spm">Loading...</div>
+  </div>
 
-      function updateTimer() {
-        const now = new Date();
-        const difference = targetDate - now;
+  <div class="timer">
+    <h2>📱 Mobile Application Development</h2>
+    <h4>11 April 2026, 10 AM to 1 PM</h4>
+    <div class="time" id="timer-mad">Loading...</div>
+  </div>
 
-        if (difference <= 0) {
-          timerElement.textContent = "Time's up!";
-          timerElement.style.color = "#f00";
-          return;
-        }
+</div>
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+<footer>
+  Stay Strong Bhailog 💪 Top Karenge 🔥
+</footer>
 
-        timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+<script>
+  function initializeTimer(id, targetDate) {
+    const el = document.getElementById(id);
+
+    function update() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        el.innerHTML = "Time's up!";
+        return;
       }
 
-      // Update timer every second
-      updateTimer();
-      setInterval(updateTimer, 1000);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      el.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
     }
 
-    // Target dates for each timer (2:00 PM - 5:00 PM)
-    const timers = [
-      { id: "timer-3", date: new Date(2025, 3, 3, 14, 0, 0) },  
-      { id: "timer-5", date: new Date(2025, 3, 5, 14, 0, 0) },  
-      { id: "timer-8", date: new Date(2025, 3, 8, 14, 0, 0) },  
-      { id: "timer-11", date: new Date(2025, 3, 11, 14, 0, 0) }  
-    ];
+    update();
+    setInterval(update, 1000);
+  }
 
-    // Initialize all timers
-    timers.forEach(timer => initializeTimer(timer.id, timer.date));
-  </script>
+  // Month starts from 0 (March = 2, April = 3)
+  const timers = [
+    { id: "timer-cet", date: new Date(2026, 2, 30, 10, 0, 0) },
+    { id: "timer-ip", date: new Date(2026, 3, 4, 10, 0, 0) },
+    { id: "timer-spm", date: new Date(2026, 3, 7, 10, 0, 0) },
+    { id: "timer-mad", date: new Date(2026, 3, 11, 10, 0, 0) }
+  ];
+
+  timers.forEach(t => initializeTimer(t.id, t.date));
+</script>
+
 </body>
 </html>
